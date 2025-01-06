@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: pink;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .bear {
+            font-size: 100px;
+            animation: dance 1s infinite;
+            position: relative;
+        }
+
+        @keyframes dance {
+            0%, 100% {
+                transform: translateX(-10px);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        .comment {
+            font-size: 18px;
+            color: black;
+            margin-top: 10px;
+            height: 30px; /* To prevent layout shift when the comment changes */
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button.yes {
+            background-color: red;
+            color: white;
+        }
+
+        .button.no {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .hearts {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: floatUp 2s infinite ease-in-out;
+            font-size: 20px;
+            color: red;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -100px);
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine?</h1>
+    <div class="bear" id="bear">🐻</div>
+    <div class="comment" id="comment">Why not? I'm adorable! 🥺</div>
+    <div class="button-container">
+        <button class="button yes" id="yesButton">Yes</button>
+        <button class="button no" id="noButton">No</button>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const comment = document.getElementById('comment');
+        const bear = document.getElementById('bear');
+
+        const comments = [
+            "Why not? I'm adorable! 🥺",
+            "Oh, Are you sure? 😘",
+            "Really Sure?",
+            "Think Again 💔",
+            "Last Chance!",
+            "Surely Not?",
+            "You Might Regret This?",
+            "Give It Another Thought!",
+            "This Could Be A Mistake!"
+        ];
+
+        let commentIndex = 0;
+
+        noButton.addEventListener('click', () => {
+            // Update the comment
+            commentIndex = (commentIndex + 1) % comments.length; // Cycle through comments
+            comment.textContent = comments[commentIndex];
+
+            // Make the "Yes" button bigger each time "No" is clicked
+            const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 5) + 'px';
+        });
+
+        yesButton.addEventListener('click', () => {
+            comment.textContent = "Yay! You said yes! ❤️";
+            yesButton.classList.add("hidden");
+            noButton.classList.add("hidden");
+
+            // Add floating hearts
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = '❤️';
+                heart.className = 'hearts';
+                heart.style.left = `${Math.random() * 100}%`; // Random horizontal position
+                heart.style.animationDelay = `${i * 0.2}s`; // Stagger the animations
+                bear.appendChild(heart);
+
+                // Remove the heart after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
+
