@@ -107,39 +107,39 @@
 
         const comments = [
             "Why not? I'm adorable! 🥺",
-            "Oh, Are you sure? 😘",
-            "Really Sure?",
-            "Think Again 💔",
-            "Last Chance!",
-            "Surely Not?",
-            "You Might Regret This?",
-            "Give It Another Thought!",
-            "This Could Be A Mistake!"
+            "Oh, come on! You know you want to! 😘",
+            "I'll share my honey with you! 🍯",
+            "Don't make me dance for nothing! 🐻💔",
+            "Are you sure? I'm the best Valentine you'll ever have! 🌹"
         ];
 
         let commentIndex = 0;
 
         noButton.addEventListener('click', () => {
-            commentIndex = (commentIndex + 1) % comments.length;
+            // Update the comment
+            commentIndex = (commentIndex + 1) % comments.length; // Cycle through comments
             comment.textContent = comments[commentIndex];
 
+            // Make the "Yes" button bigger each time "No" is clicked
             const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
             yesButton.style.fontSize = (currentSize + 5) + 'px';
         });
 
         yesButton.addEventListener('click', () => {
-            comment.textContent = "Yay! You said yes! ❤️ Screenshot your answer to me";
+            comment.textContent = "Yay! You said yes! ❤️ Screenshot your answer to me 🥰";
             yesButton.classList.add("hidden");
             noButton.classList.add("hidden");
 
+            // Add floating hearts
             for (let i = 0; i < 10; i++) {
                 const heart = document.createElement('div');
                 heart.textContent = '❤️';
                 heart.className = 'hearts';
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.animationDelay = `${i * 0.2}s`;
+                heart.style.left = `${Math.random() * 100}%`; // Random horizontal position
+                heart.style.animationDelay = `${i * 0.2}s`; // Stagger the animations
                 bear.appendChild(heart);
 
+                // Remove the heart after animation
                 setTimeout(() => {
                     heart.remove();
                 }, 2000);
