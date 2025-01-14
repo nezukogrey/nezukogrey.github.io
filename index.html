@@ -120,11 +120,9 @@
         let commentIndex = 0;
 
         noButton.addEventListener('click', () => {
-            // Update the comment
-            commentIndex = (commentIndex + 1) % comments.length; // Cycle through comments
+            commentIndex = (commentIndex + 1) % comments.length;
             comment.textContent = comments[commentIndex];
 
-            // Make the "Yes" button bigger each time "No" is clicked
             const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
             yesButton.style.fontSize = (currentSize + 5) + 'px';
         });
@@ -134,16 +132,14 @@
             yesButton.classList.add("hidden");
             noButton.classList.add("hidden");
 
-            // Add floating hearts
             for (let i = 0; i < 10; i++) {
                 const heart = document.createElement('div');
                 heart.textContent = '❤️';
                 heart.className = 'hearts';
-                heart.style.left = `${Math.random() * 100}%`; // Random horizontal position
-                heart.style.animationDelay = `${i * 0.2}s`; // Stagger the animations
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${i * 0.2}s`;
                 bear.appendChild(heart);
 
-                // Remove the heart after animation
                 setTimeout(() => {
                     heart.remove();
                 }, 2000);
@@ -152,4 +148,3 @@
     </script>
 </body>
 </html>
-
