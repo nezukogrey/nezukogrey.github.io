@@ -9,9 +9,9 @@ const comments = [
     "Really Sure?",
     "Think Again 💔",
     "Last Chance!",
-    "Surely Not? 🤔",
+    "Surely Not?",
     "You Might Regret This?",
-    "Give It Another Thought! 🤭",
+    "Give It Another Thought!",
     "This Could Be A Mistake!"
 ];
 
@@ -29,7 +29,7 @@ noButton.addEventListener('click', () => {
 
 yesButton.addEventListener('click', () => {
     // Display success message
-    comment.textContent = "Yay! You said yes! ❤️ Screenshot your answer to me 😁🥰";
+    comment.textContent = "Yay! You said yes! ❤️ Screenshot your answer to me.";
     yesButton.classList.add("hidden");
     noButton.classList.add("hidden");
 
